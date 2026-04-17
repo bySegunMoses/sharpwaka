@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  
+  --color-nigeria-green: #008751;
+  --color-lagos-yellow: #FFCE00;
+  --color-lagos-black: #0A0A0A;
+  --color-waka-bg: #0A0A0B;
+  --color-waka-card: #151518;
+  --color-waka-accent: #A855F7;
+  --color-waka-neon: #BEF264;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-white bg-waka-bg;
+  }
+}
+
+.waka-card {
+  @apply bg-waka-card border border-white/5 rounded-[2rem] shadow-2xl;
+}
+
+.waka-input-wrapper {
+  @apply bg-[#1C1C21] border border-white/10 rounded-3xl p-2 flex items-center gap-3 transition-all focus-within:border-waka-accent/50 focus-within:ring-4 focus-within:ring-waka-accent/10;
+}
+
+.waka-suggest-tag {
+  @apply px-4 py-2 rounded-full border border-white/10 text-xs font-semibold text-slate-400 hover:bg-waka-accent/20 hover:text-white hover:border-waka-accent/30 transition-all cursor-pointer;
+}
+
+/* Custom Markdown Styling */
+.markdown-body {
+  @apply text-slate-300 leading-relaxed;
+}
+.markdown-body h3 {
+  @apply text-white font-display font-bold text-xl mb-4;
+}
+.markdown-body p {
+  @apply mb-4;
+}
+.markdown-body ul {
+  @apply list-disc list-outside ml-5 mb-4 space-y-2;
+}
+.markdown-body li {
+  @apply pl-1;
+}
+.markdown-body li::marker {
+  @apply text-waka-neon font-bold;
+}
+.markdown-body strong {
+  @apply text-waka-neon font-bold;
+}
+
+/* Table Styles - Wrapped in overflow-x-auto by react-markdown if possible, or just styled here */
+.markdown-body table {
+  @apply w-full border-collapse mb-6 text-sm block md:table overflow-x-auto whitespace-nowrap md:whitespace-normal rounded-xl border border-white/10;
+}
+.markdown-body th {
+  @apply bg-white/10 text-white font-bold py-3 px-4 text-left border-b border-white/10;
+}
+.markdown-body td {
+  @apply py-3 px-4 border-b border-white/5 text-slate-300;
+}
+.markdown-body tr:last-child td {
+  @apply border-b-0;
+}
+.markdown-body tr:nth-child(even) {
+  @apply bg-white/[0.03];
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
