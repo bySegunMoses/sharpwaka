@@ -29,7 +29,8 @@ import {
 import { AIRLINES, TERMINALS, AirlineData } from './constants';
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 type Mode = 'TRANSPORT' | 'TERMINAL';
 
@@ -66,6 +67,12 @@ export default function App() {
   const handleSearch = async (forcedQuery?: string) => {
     const activeQuery = forcedQuery || query;
     if (!activeQuery.trim()) return;
+
+    if (!ai) {
+      setResultsOpen(true);
+      setAiResponse('SharpWaka needs a VITE_GEMINI_API_KEY before AI search can run. Add it in your local env file or Vercel project settings.');
+      return;
+    }
     
     setIsAiLoading(true);
     setAiResponse(null);
